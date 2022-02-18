@@ -8,9 +8,10 @@ const HeaderContainer = styled.div`
   grid-template-areas: "left middle right";
   place-items: center;
 	padding: 10px;
+  border-bottom: 1px solid ${({theme}) => theme.text};
 
   @media (max-width: 650px) {
-		grid-template: 100% / 2fr 1fr;
+		grid-template: 100% / 3fr 2fr;
 		grid-template-areas: "left right";
 	}
 `;

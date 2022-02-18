@@ -5,7 +5,7 @@ import ThemeButton from "./theme-button";
 const HeaderButtonsContainer = styled.div`
   align-self: center;
 
-  height: 60%;
+  height: 80%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -19,8 +19,8 @@ const HeaderButtonsContainer = styled.div`
 const HeaderButtons = () => {
   return (
     <HeaderButtonsContainer>
-      <LogginButton />
       <ThemeButton />
+      <LogginButton />
     </HeaderButtonsContainer>
   );
 };
