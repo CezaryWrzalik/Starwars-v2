@@ -25,7 +25,7 @@ position: relative;
   @media (max-width: 650px) {
     display: grid;
     place-items: center;
-    width: 30px;
+    width: 50px;
 
     svg {
       display: block;

@@ -12,9 +12,9 @@ const UiButtonContainer = styled.button`
   border-radius: var(--default-radius);
   color: ${({ theme }) => theme.text};
   cursor: pointer;
-  // transition: 0.3s;
+  transition: opacity .3s;
   height: 100%;
-
+f
   :hover {
     opacity: 0.5;
   }

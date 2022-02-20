@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 
 const HomePageContainer = styled.div`
-  height: calc(100vh - 160px);
+  height: 100%;
   display: grid;
   place-items: center;
 `;

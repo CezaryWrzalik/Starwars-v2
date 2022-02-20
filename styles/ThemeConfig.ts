@@ -30,10 +30,19 @@ export const GlobalStyles = createGlobalStyle`
   --default-radius: 15px;
 }  
 
+html {
+  height: 100%;
+}
+
 body {
   background: ${({ theme }: CustomTheme) => theme.body};
   min-width: 270px;
   transition: all 0.50s linear;
+  height: 100%;
+}
+
+#__next{
+  height: 100%;
 }
 
 svg{

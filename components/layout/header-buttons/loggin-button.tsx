@@ -4,7 +4,8 @@ import PersonIcon from "../../icons/person-icon";
 import UiButton from "../../ui/ui-button";
 import LoginPopup from "../login/login";
 
-const LogginButtonContainer = styled.div``;
+const LogginButtonContainer = styled.div`
+`;
 
 const DesktopButton = styled.div`
   height: 100%;
@@ -19,8 +20,9 @@ const MobileButton = styled.button`
   height: 100%;
   border: 1px solid ${({ theme }) => theme.text};
   border-radius: var(--default-radius);
-  background: ${({ theme }) => theme.body};
+  background: inherit;
   cursor: pointer;
+  width: 50px;
 
   @media (min-width: 650px) {
     display: none;
@@ -42,7 +44,10 @@ const LogginButton = () => {
       <MobileButton onClick={toggleLoginVisible}>
         <PersonIcon />
       </MobileButton>
-      <LoginPopup loginVisible={loginVisible} toggleLoginVisible={toggleLoginVisible}/>
+      <LoginPopup
+        loginVisible={loginVisible}
+        toggleLoginVisible={toggleLoginVisible}
+      />
     </LogginButtonContainer>
   );
 };
