@@ -54,6 +54,10 @@ const Modal = styled.div`
     gap: 20px;
     padding: 10px 10px;
   }
+
+  @media (max-height: 500px) {
+    height: 300px
+  }
 `;
 
 const LoginContainer = styled.div`
@@ -66,6 +70,10 @@ const LoginContainer = styled.div`
     width: 250px;
     gap: 20px;
     padding: 10px 10px;
+  }
+
+  @media (max-height: 500px) {
+    height: 250px
   }
 `;
 
