@@ -2,13 +2,15 @@ import { createGlobalStyle } from "styled-components";
 import { CustomTheme } from "../types/theme-types";
 
 export const lightTheme = {
-  body: "#FFF",
+  theme: "light",
+  body: "#E5E5E5",
   text: "black",
   background: "#363537",
 };
 
 export const darkTheme = {
-  body: "#363537",
+  theme: "dark",
+  body: "#242424",
   text: "gold",
   background: "#999",
 };
@@ -18,22 +20,28 @@ export const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
+  font-family: Montserrat, Tahoma, Helvetica, Arial, Roboto, sans-serif;
+  
+  color: ${({ theme }: CustomTheme) => theme.text};
   fill: ${({ theme }: CustomTheme) => theme.text};
-  height: 100%;
-
+  
+  
   --default-radius: 15px;
 }  
 
 body {
-    background: ${({ theme }: CustomTheme) => theme.body};
-    color: ${({ theme }: CustomTheme) => theme.text};
-    font-family: Tahoma, Helvetica, Arial, Roboto, sans-serif;
-    transition: all 0.50s linear;
-    min-width: 350px;
-  }
+  background: ${({ theme }: CustomTheme) => theme.body};
+  min-width: 270px;
+  transition: all 0.50s linear;
+}
 
 svg{
   height: 100%;
   width: 100%;
+}
+
+input:focus {
+  border: 1px solid red;
 }
 `;

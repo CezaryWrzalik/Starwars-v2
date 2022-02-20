@@ -1,5 +1,6 @@
 interface CUSTOM_THEME {
 	theme: {
+		theme: string,
 		body: string,
 		text: string,
 		background: string,

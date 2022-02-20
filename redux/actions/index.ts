@@ -22,7 +22,7 @@ export type FiltersAction = UPDATE_FILTERS;
 interface TOGGLE_THEME {
   type: ActionType.TOGGLE_THEME;
   payload: {
-    theme: boolean;
+    theme: string;
   };
 }
 

@@ -12,7 +12,7 @@ type PropsType = {
 
 const LayoutContainer = styled.div`
   display: grid;
-  grid-template: 80px 1fr 100px/ 1fr;
+  grid-template: 80px 1fr 80px/ 1fr;
   height: 100%;
 
   @media (max-width: 650px) {
@@ -25,7 +25,6 @@ const Layout = ({ children, setTheme }: PropsType) => {
 
   useEffect(() => {
     setTheme(theme);
-		console.log("blabl");
   }, [theme]);
 
   return (

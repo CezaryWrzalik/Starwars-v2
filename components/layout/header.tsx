@@ -11,13 +11,18 @@ const HeaderContainer = styled.div`
   border-bottom: 1px solid ${({theme}) => theme.text};
 
   @media (max-width: 650px) {
-		grid-template: 100% / 3fr 2fr;
+		grid-template: 100% / 1fr 1fr;
 		grid-template-areas: "left right";
+    padding: 10px 0;
 	}
 `;
 const IconContainer = styled.div`
   grid-area: middle;
 	display: grid;
+
+  svg{
+    height: 85%;
+  }
 
 	@media (max-width: 650px) {
 		grid-area: left;

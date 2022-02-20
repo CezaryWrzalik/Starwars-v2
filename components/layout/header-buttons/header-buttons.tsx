@@ -13,6 +13,7 @@ const HeaderButtonsContainer = styled.div`
   grid-area: right;
 
   @media (max-width: 650px) {
+    gap: 10px;
   }
 `;
 
