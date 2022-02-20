@@ -7,7 +7,7 @@ type PropsType = {
 const UiButtonContainer = styled.button`
   background: inherit;
   border: 1px solid ${({ theme }) => theme.text};
-  padding: 0 20px;
+  padding: 0 10px;
   width: 100%;
   border-radius: var(--default-radius);
   color: ${({ theme }) => theme.text};

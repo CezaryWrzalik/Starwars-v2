@@ -8,7 +8,8 @@ const LogginButtonContainer = styled.div`
 `;
 
 const DesktopButton = styled.div`
-  height: 100%;
+  height: 50px;
+  width: 80px;
 
   @media (max-width: 650px) {
     display: none;
@@ -17,7 +18,7 @@ const DesktopButton = styled.div`
 
 const MobileButton = styled.button`
   padding: 8px;
-  height: 100%;
+  height: 50px;
   border: 1px solid ${({ theme }) => theme.text};
   border-radius: var(--default-radius);
   background: inherit;

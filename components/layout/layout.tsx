@@ -18,6 +18,10 @@ const LayoutContainer = styled.div`
   @media (max-width: 650px) {
     grid-template: 80px 1fr 80px/ 1fr;
   }
+
+  @media (max-height: 500px) {
+    grid-template: 1fr / 100px 1fr 100px;
+  }
 `;
 
 const Layout = ({ children, setTheme }: PropsType) => {

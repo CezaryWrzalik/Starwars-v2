@@ -17,6 +17,7 @@ position: relative;
   border: 1px solid ${({ theme }) => theme.text};
   padding: 8px;
   transition: 0s;
+  height: 50px;
 
   svg {
     display: none;

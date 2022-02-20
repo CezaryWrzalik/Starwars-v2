@@ -15,6 +15,12 @@ const HeaderButtonsContainer = styled.div`
   @media (max-width: 650px) {
     gap: 10px;
   }
+
+  @media (max-height: 500px) {
+    flex-direction: column;
+    grid-area: bottom;
+    align-items: center;
+  }
 `;
 
 const HeaderButtons = () => {

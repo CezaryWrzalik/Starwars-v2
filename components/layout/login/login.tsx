@@ -11,8 +11,8 @@ type PropsType = {
 const CloseModal = styled.div`
   position: absolute;
   right: 15px;
-  cursor: pointer;
   top: 15px;
+  cursor: pointer;
 
   svg {
     height: 15px;
