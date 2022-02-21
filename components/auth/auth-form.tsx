@@ -55,7 +55,7 @@ const AuthForm = () => {
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const createUser = async (email: string, password: string) => {
-    const response = await fetch(`https://${process.env.VERCEL_URL}/api/auth/signup`, {
+    const response = await fetch(`/api/auth/signup`, {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -67,6 +67,7 @@ const AuthForm = () => {
     });
 
     const data = await response.json();
+    console.log(data);
 
     if (!response.ok) {
       throw new Error(data.message || "Something went wrong!");

@@ -32,7 +32,7 @@ const Home: NextPage<CategoriesType> = ({ categories }) => {
   return (
     <HomePageContainer>
       <ListContainer>
-        {categories.map((category: string, i) => (
+        {categories.map((category: string, i: number) => (
           <ListItem key={i}>{category}</ListItem>
         ))}
       </ListContainer>

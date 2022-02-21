@@ -3,6 +3,7 @@ import { hashPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+
   if (req.method === "POST") {
     const data = req.body;
 
@@ -21,7 +22,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const client = await connectToDatabase();
+    
     const db = await client.db();
+
 
     const existingUser = await db.collection("users").findOne({ email: email });
 
