@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { hashPassword } from "../../../lib/auth";
 import { connectToDatabase } from "../../../lib/db";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const data = req.body;
 
@@ -19,6 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       });
       return;
     }
+
     const client = await connectToDatabase();
     const db = await client.db();
 
@@ -32,6 +33,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const hashedPassword = await hashPassword(password);
 
+
     await db.collection("users").insertOne({
       email: email,
       password: hashedPassword,
@@ -41,3 +43,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     client.close();
   }
 };
+
+export default handler;
