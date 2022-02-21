@@ -26,4 +26,15 @@ interface TOGGLE_THEME {
   };
 }
 
-export type ThemeAction = TOGGLE_THEME
+export type ThemeAction = TOGGLE_THEME;
+
+interface UPDATE_RESPONSE {
+  type: ActionType.UPDATE_STATUS;
+  payload: {
+    title: string;
+    status: string;
+    message: string;
+  };
+}
+
+export type ResponseAction = UPDATE_RESPONSE;

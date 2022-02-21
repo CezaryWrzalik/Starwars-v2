@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
 import styled from "styled-components";
+import { CategoriesType } from "../types/fetchedData-types";
+import { fetchCategories } from "../lib/starwars";
 
 const HomePageContainer = styled.div`
   height: 100%;
@@ -18,26 +20,34 @@ const ListItem = styled.li`
   padding: 10px 60px;
   margin-bottom: 20px;
   cursor: pointer;
-  transition: 0.5s;
+  transition: opacity 0.5s;
+  text-transform: uppercase;
 
   &:hover {
     opacity: 0.4;
   }
 `;
 
-const Home: NextPage = () => {
+const Home: NextPage<CategoriesType> = ({ categories }) => {
   return (
     <HomePageContainer>
       <ListContainer>
-        <ListItem>people</ListItem>
-        <ListItem>ccococo</ListItem>
-        <ListItem>people</ListItem>
-        <ListItem>people</ListItem>
-        <ListItem>people</ListItem>
-        <ListItem>people</ListItem>
+        {categories.map((category: string, i) => (
+          <ListItem key={i}>{category}</ListItem>
+        ))}
       </ListContainer>
     </HomePageContainer>
   );
+};
+
+export const getStaticProps = async () => {
+  const categories = await fetchCategories();
+
+  return {
+    props: {
+      categories: categories,
+    },
+  };
 };
 
 export default Home;

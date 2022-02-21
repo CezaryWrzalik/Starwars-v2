@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 type PropsType = {
+  type?: string;
+  name?: string;
+  value?: string;
   children: string;
 };
 
@@ -12,16 +15,20 @@ const UiButtonContainer = styled.button`
   border-radius: var(--default-radius);
   color: ${({ theme }) => theme.text};
   cursor: pointer;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
   height: 100%;
-f
+
   :hover {
     opacity: 0.5;
   }
 `;
 
-const UiButton = ({ children }: PropsType) => {
-  return <UiButtonContainer>{children}</UiButtonContainer>;
+const UiButton = ({ children, name, value }: PropsType) => {
+  return (
+    <UiButtonContainer name={name} value={value}>
+      {children}
+    </UiButtonContainer>
+  );
 };
 
 export default UiButton;

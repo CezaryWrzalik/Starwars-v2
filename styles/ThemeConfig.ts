@@ -24,14 +24,13 @@ export const GlobalStyles = createGlobalStyle`
   font-family: Montserrat, Tahoma, Helvetica, Arial, Roboto, sans-serif;
   
   color: ${({ theme }: CustomTheme) => theme.text};
-  fill: ${({ theme }: CustomTheme) => theme.text};
-  
   
   --default-radius: 15px;
 }  
 
 html {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -39,14 +38,17 @@ body {
   min-width: 270px;
   transition: all 0.50s linear;
   height: 100%;
+  width: 100%;
 }
 
 #__next{
   height: 100%;
+  width: 100%;
 }
 
 svg{
   height: 100%;
+  fill: ${({ theme }: CustomTheme) => theme.text};
 }
 
 input:focus {

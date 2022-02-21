@@ -1,5 +1,10 @@
 import { Dispatch } from "redux";
-import { DataAction, FiltersAction, ThemeAction } from "../actions";
+import {
+  DataAction,
+  FiltersAction,
+  ResponseAction,
+  ThemeAction,
+} from "../actions";
 import { ActionType } from "../actions-types";
 
 export const updateFilters = (filters: object) => {
@@ -31,6 +36,23 @@ export const toggleTheme = (theme: string) => {
       type: ActionType.TOGGLE_THEME,
       payload: {
         theme,
+      },
+    });
+  };
+};
+
+export const updateResponse = (
+  status: string,
+  message: string,
+  title: string
+) => {
+  return (dispatch: Dispatch<ResponseAction>) => {
+    dispatch({
+      type: ActionType.UPDATE_STATUS,
+      payload: {
+        title,
+        status,
+        message,
       },
     });
   };

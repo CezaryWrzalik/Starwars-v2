@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { State } from "../../redux";
 import Footer from "./footer";
 import Header from "./header";
+import UiNotification from "../ui/ui-notification";
 
 type PropsType = {
   setTheme: Dispatch<SetStateAction<string>>;
@@ -20,7 +21,7 @@ const LayoutContainer = styled.div`
   }
 
   @media (max-height: 500px) {
-    grid-template: 1fr / 100px 1fr 100px;
+    grid-template: 100% / 100px 1fr 100px;
   }
 `;
 
@@ -36,6 +37,7 @@ const Layout = ({ children, setTheme }: PropsType) => {
       <Header />
       {children}
       <Footer />
+      <UiNotification />
     </LayoutContainer>
   );
 };

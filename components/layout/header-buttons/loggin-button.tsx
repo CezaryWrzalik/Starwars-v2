@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import PersonIcon from "../../icons/person-icon";
 import UiButton from "../../ui/ui-button";
-import LoginPopup from "../login/login";
+import LoginPopup from "../login/login-modal";
 
 const LogginButtonContainer = styled.div`
 `;
