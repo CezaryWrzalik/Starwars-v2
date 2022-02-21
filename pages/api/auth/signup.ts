@@ -33,7 +33,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const hashedPassword = await hashPassword(password);
 
-
     await db.collection("users").insertOne({
       email: email,
       password: hashedPassword,
