@@ -54,7 +54,7 @@ const Modal = styled.div`
   }
 
   @media (max-height: 500px) {
-    height: 300px
+    height: 300px;
   }
 `;
 
@@ -63,7 +63,7 @@ const LoginContainer = styled.div`
   height: 300px;
   background-color: ${({ theme }) => theme.body};
   border-radius: var(--default-radius);
-  transition: background .5s linear;
+  transition: background 0.5s linear;
 
   @media (max-width: 650px) {
     width: 250px;
@@ -72,15 +72,11 @@ const LoginContainer = styled.div`
   }
 
   @media (max-height: 500px) {
-    height: 250px
+    height: 250px;
   }
 `;
 
-
 const LoginModal = ({ loginVisible, toggleLoginVisible }: PropsType) => {
-
-
-
   return (
     <Modal loginVisible={loginVisible}>
       <CloseModal onClick={toggleLoginVisible}>

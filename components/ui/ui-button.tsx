@@ -4,7 +4,7 @@ type PropsType = {
   type?: string;
   name?: string;
   value?: string;
-  children: string;
+  children: JSX.Element;
 };
 
 const UiButtonContainer = styled.button`

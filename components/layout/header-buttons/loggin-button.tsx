@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { State } from "../../../redux";
 import PersonIcon from "../../icons/person-icon";
 import UiButton from "../../ui/ui-button";
 import LoginPopup from "../login/login-modal";
 
-const LogginButtonContainer = styled.div`
-`;
+const LogginButtonContainer = styled.div``;
 
 const DesktopButton = styled.div`
   height: 50px;
@@ -31,16 +32,26 @@ const MobileButton = styled.button`
 `;
 
 const LogginButton = () => {
+  const { status } = useSelector((state: State) => state.response);
+
   const [loginVisible, setLoginVisible] = useState(false);
 
   const toggleLoginVisible = () => {
     setLoginVisible(!loginVisible);
   };
 
+  useEffect(() => {
+    if (status === "success") {
+      setLoginVisible(false);
+    }
+  }, [status]);
+
   return (
     <LogginButtonContainer>
       <DesktopButton onClick={toggleLoginVisible}>
-        <UiButton>Zaloguj</UiButton>
+        <UiButton>
+          <div>Zaloguj</div>
+        </UiButton>
       </DesktopButton>
       <MobileButton onClick={toggleLoginVisible}>
         <PersonIcon />

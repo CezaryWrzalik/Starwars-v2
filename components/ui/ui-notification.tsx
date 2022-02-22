@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { actionCreators, State } from "../../redux";
-import { updateResponse } from "../../redux/action-creators";
 
 type NotificationContainerProps = {
   activeNotification: boolean;
@@ -11,9 +10,9 @@ type NotificationContainerProps = {
 };
 
 const NotificationContainer = styled.div`
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
   height: 5rem;
   width: 100%;
   background-color: #1b1b1b;
@@ -53,6 +52,7 @@ const UiNotification = () => {
   const { status, title, message } = useSelector(
     (state: State) => state.response
   );
+
   const [activeNotification, setActiveNotification] = useState(false);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const UiNotification = () => {
         clearTimeout(timer);
       };
     }
-  }, [status]);
+  }, [status, updateResponse]);
 
   return (
     <NotificationContainer

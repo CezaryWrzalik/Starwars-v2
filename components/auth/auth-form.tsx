@@ -41,12 +41,6 @@ const InputContainer = styled.div`
 
 const RefInput = styled(UiInputContainer)``;
 
-interface SubmitEvent extends Event {
-  submitter: {
-    value: string;
-  };
-}
-
 const AuthForm = () => {
   const dispatch = useDispatch();
   const { updateResponse } = bindActionCreators(actionCreators, dispatch);
@@ -67,7 +61,6 @@ const AuthForm = () => {
     });
 
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error(data.message || "Something went wrong!");
@@ -76,11 +69,8 @@ const AuthForm = () => {
     return data;
   };
 
-  const subbmitHandler = async (e: FormEvent) => {
+  const subbmitHandler = async (e: any, submitter: string) => {
     e.preventDefault();
-
-    const { submitter } = e.nativeEvent as SubmitEvent;
-    const formSubbmiter = submitter.value;
 
     if (!emailInputRef.current || !passwordInputRef.current) {
       return;
@@ -89,21 +79,21 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    if (formSubbmiter === "register") {
+    if (submitter === "register") {
       try {
-        updateResponse("pending", "pending", formSubbmiter);
+        updateResponse("pending", "pending", submitter);
         const result = await createUser(enteredEmail, enteredPassword);
-        updateResponse("success", result.message, formSubbmiter);
+        updateResponse("success", result.message, submitter);
       } catch (error) {
         if (error instanceof Error) {
-          updateResponse("error", error.message, formSubbmiter);
+          updateResponse("error", error.message, submitter);
         }
       }
     }
   };
 
   return (
-    <FormContainer onSubmit={subbmitHandler}>
+    <FormContainer>
       <InputContainer>
         <Label htmlFor="email">Email: </Label>
         <RefInput
@@ -123,10 +113,10 @@ const AuthForm = () => {
         ></RefInput>
       </InputContainer>
       <UiButton name="login" value="login">
-        Zaloguj
+        <div onClick={(e) => subbmitHandler(e, "login")}>Zaloguj</div>
       </UiButton>
       <UiButton name="login" value="register">
-        Zarejestuj
+        <div onClick={(e) => subbmitHandler(e, "register")}>Zarejestuj</div>
       </UiButton>
     </FormContainer>
   );

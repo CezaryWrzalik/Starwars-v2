@@ -30,7 +30,7 @@ const Layout = ({ children, setTheme }: PropsType) => {
 
   useEffect(() => {
     setTheme(theme);
-  }, [theme]);
+  }, [theme, setTheme]);
 
   return (
     <LayoutContainer>
