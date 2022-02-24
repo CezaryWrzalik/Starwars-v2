@@ -54,4 +54,8 @@ svg{
 input:focus {
   border: 1px solid red;
 }
+
+a{
+  text-decoration: none;
+}
 `;

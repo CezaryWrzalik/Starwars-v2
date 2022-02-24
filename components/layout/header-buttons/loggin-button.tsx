@@ -1,10 +1,12 @@
+import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { State } from "../../../redux";
 import PersonIcon from "../../icons/person-icon";
 import UiButton from "../../ui/ui-button";
-import LoginPopup from "../login/login-modal";
+import LoginPopup from "../modals/login-modal";
+import ProfileMenu from "../modals/profile-menu";
 
 const LogginButtonContainer = styled.div``;
 
@@ -32,34 +34,38 @@ const MobileButton = styled.button`
 `;
 
 const LogginButton = () => {
+  const { data: session } = useSession();
   const { status } = useSelector((state: State) => state.response);
 
-  const [loginVisible, setLoginVisible] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   const toggleLoginVisible = () => {
-    setLoginVisible(!loginVisible);
+    setIsPopupVisible(!isPopupVisible);
   };
 
   useEffect(() => {
     if (status === "success") {
-      setLoginVisible(false);
+      setIsPopupVisible(false);
     }
   }, [status]);
 
   return (
     <LogginButtonContainer>
       <DesktopButton onClick={toggleLoginVisible}>
-        <UiButton>
-          <div>Zaloguj</div>
-        </UiButton>
+        <UiButton>{session ? <div>Profile</div> : <div>Login</div>}</UiButton>
       </DesktopButton>
       <MobileButton onClick={toggleLoginVisible}>
         <PersonIcon />
       </MobileButton>
-      <LoginPopup
-        loginVisible={loginVisible}
-        toggleLoginVisible={toggleLoginVisible}
-      />
+      {session ? (
+        <ProfileMenu isPopupVisible={isPopupVisible}
+        />
+      ) : (
+        <LoginPopup
+          isPopupVisible={isPopupVisible}
+          toggleLoginVisible={toggleLoginVisible}
+        />
+      )}
     </LogginButtonContainer>
   );
 };

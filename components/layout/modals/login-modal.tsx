@@ -1,9 +1,10 @@
+import { useSession } from "next-auth/react";
 import styled from "styled-components";
 import AuthForm from "../../auth/auth-form";
 import CrossIcon from "../../icons/cross-icon";
 
 type PropsType = {
-  loginVisible: boolean;
+  isPopupVisible: boolean;
   toggleLoginVisible?: () => void;
 };
 
@@ -39,8 +40,8 @@ const Modal = styled.div`
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;
 
-  ${({ loginVisible }: PropsType) =>
-    loginVisible &&
+  ${({ isPopupVisible }: PropsType) =>
+  isPopupVisible &&
     `
   visibility: visible;
   opacity: 1;
@@ -76,9 +77,10 @@ const LoginContainer = styled.div`
   }
 `;
 
-const LoginModal = ({ loginVisible, toggleLoginVisible }: PropsType) => {
+const LoginModal = ({ isPopupVisible, toggleLoginVisible }: PropsType) => {
+
   return (
-    <Modal loginVisible={loginVisible}>
+    <Modal isPopupVisible={isPopupVisible}>
       <CloseModal onClick={toggleLoginVisible}>
         <CrossIcon />
       </CloseModal>

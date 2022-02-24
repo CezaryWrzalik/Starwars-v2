@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import StarWarsIcon from "../icons/starwars-icon";
 import HeaderButtons from "./header-buttons/header-buttons";
@@ -22,8 +23,8 @@ const HeaderContainer = styled.div`
       "top"
       "bottom";
 
-  border-right: 1px solid ${({ theme }) => theme.text};
-  border-bottom: none;
+    border-right: 1px solid ${({ theme }) => theme.text};
+    border-bottom: none;
   }
 `;
 const IconContainer = styled.div`
@@ -32,15 +33,21 @@ const IconContainer = styled.div`
   display: grid;
   place-items: center;
 
-  svg {
-
+  a {
     height: 80%;
+    svg {
+      cursor: pointer;
+
+      hover: {
+        fill: grey;
+      }
+    }
   }
-  
+
   @media (max-width: 650px) {
     grid-area: left;
   }
-  
+
   @media (max-height: 500px) {
     grid-area: top;
     transform: rotate(-90deg);
@@ -51,7 +58,11 @@ const Header = () => {
   return (
     <HeaderContainer>
       <IconContainer>
-        <StarWarsIcon />
+        <Link href="/">
+          <a>
+            <StarWarsIcon />
+          </a>
+        </Link>
       </IconContainer>
       <HeaderButtons />
     </HeaderContainer>

@@ -1,4 +1,5 @@
-import { FormEvent, useDebugValue, useRef } from "react";
+import { useRef } from "react";
+import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from "styled-components";
@@ -38,6 +39,12 @@ const InputContainer = styled.div`
     width: 100%;
   }
 `;
+
+type ResultType = {
+  result: {
+    error: any
+  }
+}
 
 const RefInput = styled(UiInputContainer)``;
 
@@ -79,9 +86,30 @@ const AuthForm = () => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
+    if (submitter === "login") {
+      updateResponse("pending", "pending", submitter);
+      const result = await signIn<'credentials'>("credentials", {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+
+      if(!result){
+        throw new Error ("Something went wrong");
+      }
+
+      if (result.error) {
+        updateResponse("error", result.error, submitter);
+      }
+
+      if (!result.error) {
+        updateResponse("success", "pending", submitter);
+      }
+    }
+
     if (submitter === "register") {
+      updateResponse("pending", "pending", submitter);
       try {
-        updateResponse("pending", "pending", submitter);
         const result = await createUser(enteredEmail, enteredPassword);
         updateResponse("success", result.message, submitter);
       } catch (error) {
@@ -95,18 +123,18 @@ const AuthForm = () => {
   return (
     <FormContainer>
       <InputContainer>
-        <Label htmlFor="email">Email: </Label>
+        <Label htmlFor="Email">Email: </Label>
         <RefInput
-          placeholder="email"
+          placeholder="Email"
           type="email"
           id="email"
           ref={emailInputRef}
         ></RefInput>
       </InputContainer>
       <InputContainer>
-        <Label htmlFor="pass">Password</Label>
+        <Label htmlFor="Password">Password</Label>
         <RefInput
-          placeholder="password"
+          placeholder="Password"
           type="password"
           id="pass"
           ref={passwordInputRef}
