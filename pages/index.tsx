@@ -2,9 +2,10 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import { CategoriesType } from "../types/fetchedData-types";
 import { fetchCategories } from "../lib/starwars";
+import Link from "next/link";
 
 const HomePageContainer = styled.div`
-  height: 100%;
+  height: auto;
   display: grid;
   place-items: center;
 `;
@@ -33,7 +34,7 @@ const Home: NextPage<CategoriesType> = ({ categories }) => {
     <HomePageContainer>
       <ListContainer>
         {categories.map((category: string, i: number) => (
-          <ListItem key={i}>{category}</ListItem>
+          <ListItem key={i}><Link href={`/${category}`}>{category}</Link></ListItem>
         ))}
       </ListContainer>
     </HomePageContainer>

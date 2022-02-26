@@ -6,6 +6,7 @@ export const lightTheme = {
   body: "#E5E5E5",
   text: "black",
   background: "#363537",
+  hovered: "lightgray"
 };
 
 export const darkTheme = {
@@ -13,6 +14,7 @@ export const darkTheme = {
   body: "#242424",
   text: "gold",
   background: "#999",
+  hovered: "dimgray"
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -57,5 +59,22 @@ input:focus {
 
 a{
   text-decoration: none;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background: inherit;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+  background: darkgray;
+  border-radius: 15px;
 }
 `;

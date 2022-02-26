@@ -1,5 +1,9 @@
 import { useSession } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import styled from "styled-components";
+import { actionCreators } from "../../redux";
+import { PassType } from "../../types/profile-types";
 import ProfileForm from "./profile-form";
 
 const ProfilePageContainer = styled.div`
@@ -12,10 +16,16 @@ const ProfilePageContainer = styled.div`
 	text-align: center;
 `;
 
+
 const UserProfile = () => {
+  const dispatch = useDispatch();
+  const { updateResponse } = bindActionCreators(actionCreators, dispatch);
+  
 	const {data: session} = useSession();
 
-	async function changePasswordHandler(passwordData) {
+	async function changePasswordHandler(passwordData: PassType) {
+    updateResponse("pending", "pending", "Change Password");
+
     const response = await fetch("/api/user/change-password", {
       method: "PATCH",
       body: JSON.stringify(passwordData),
@@ -23,15 +33,19 @@ const UserProfile = () => {
         "Content-Type": "application/json",
       },
     });
-
     const data = await response.json();
 
-    console.log(data);
+    if(response.ok){
+      updateResponse("success", data.message, "Change Password");
+    } else {
+      updateResponse("error", data.message, "Change Password");
+      
+    }
   }
 
 	return(
 		<ProfilePageContainer>
-      <h1>Your email {session.user.email}</h1>
+      <h1>Your email {session?.user.email}</h1>
 			<ProfileForm onChangePassword={changePasswordHandler} />
     </ProfilePageContainer>
 	)

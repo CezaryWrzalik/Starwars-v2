@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { FormEvent, MutableRefObject, useRef } from "react";
 import styled from "styled-components";
+import { PassType } from "../../types/profile-types";
 import UiButton from "../ui/ui-button";
 import { UiInputContainer } from "../ui/ui-input";
 
@@ -30,12 +31,17 @@ const ButtonContainer = styled.div`
   height: 30px;
 `;
 
-const ProfileForm = (props) => {
-  const oldPasswordRef = useRef();
-  const newPasswordRef = useRef();
+type PropsType = {
+  onChangePassword: ({oldPassword, newPassword}: PassType) => void;
+}
 
-  function subbmitHandler(e) {
+const ProfileForm = (props: PropsType) => {
+  const oldPasswordRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const newPasswordRef = useRef() as MutableRefObject<HTMLInputElement>;
+
+  function subbmitHandler(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
 
     const oldPassword = oldPasswordRef.current.value;
     const newPassword = newPasswordRef.current.value;
@@ -45,7 +51,6 @@ const ProfileForm = (props) => {
       newPassword: newPassword,
     });
 
-		console.log('Maja to fajna dziewczyna')
   }
 
   return (

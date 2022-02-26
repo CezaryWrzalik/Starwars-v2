@@ -18,7 +18,7 @@ const HeaderContainer = styled.div`
   }
 
   @media (max-height: 500px) {
-    grid-template: 1fr 1fr / 1fr;
+    grid-template: 1fr 1fr / 100%;
     grid-template-areas:
       "top"
       "bottom";
@@ -34,23 +34,30 @@ const IconContainer = styled.div`
   place-items: center;
 
   a {
-    height: 80%;
+    height: 55px;
+    width: 100%;
     svg {
       cursor: pointer;
+      transition: .5s;
 
-      hover: {
-        fill: grey;
+      :hover {
+        fill: ${({theme}) => theme.hovered};
       }
     }
   }
 
   @media (max-width: 650px) {
     grid-area: left;
+    max-height: 80%;
   }
 
   @media (max-height: 500px) {
     grid-area: top;
     transform: rotate(-90deg);
+    
+    svg{
+      max-height: 80%;
+    }
   }
 `;
 

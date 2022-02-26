@@ -23,7 +23,7 @@ position: relative;
     display: none;
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 650px){ {
     display: grid;
     place-items: center;
     width: 50px;
@@ -31,6 +31,17 @@ position: relative;
     svg {
       display: block;
     }
+  }
+
+  @media (max-height: 500px){
+    display: grid;
+    place-items: center;
+    width: 50px;
+
+    svg {
+      display: block;
+    }
+  }
   }
 `;
 
@@ -54,6 +65,7 @@ const Thumb = styled.span`
   @media (max-width: 650px) {
     display: none;
   }
+
 `;
 
 

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -76,7 +76,7 @@ const AuthForm = () => {
     return data;
   };
 
-  const subbmitHandler = async (e: any, submitter: string) => {
+  const subbmitHandler = async (e: React.MouseEvent<HTMLElement>, submitter: string) => {
     e.preventDefault();
 
     if (!emailInputRef.current || !passwordInputRef.current) {
@@ -109,8 +109,10 @@ const AuthForm = () => {
 
     if (submitter === "register") {
       updateResponse("pending", "pending", submitter);
+      
       try {
         const result = await createUser(enteredEmail, enteredPassword);
+
         updateResponse("success", result.message, submitter);
       } catch (error) {
         if (error instanceof Error) {

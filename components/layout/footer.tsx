@@ -14,8 +14,11 @@ const FooterContainer = styled.footer`
 
   @media (max-height: 500px) {
 		border-top: none;
+    border-left: 1px solid ${({ theme }) => theme.text};
+    text-align: center;
     h4 {
-      display: none;
+      transform: rotate(-90deg)
+      // display: none;
     }
   }
 `;

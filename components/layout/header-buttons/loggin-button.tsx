@@ -28,7 +28,7 @@ const MobileButton = styled.button`
   cursor: pointer;
   width: 50px;
 
-  @media (min-width: 650px) {
+  @media (min-width: 650px){
     display: none;
   }
 `;

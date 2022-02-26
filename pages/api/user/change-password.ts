@@ -19,6 +19,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
 
+  if (
+    !newPassword ||
+    newPassword.trim().length < 7
+  ) {
+    res.status(422).json({
+      message:
+        "Invalid input - password should be at least 7 characters long.",
+    });
+    return;
+  }
+
   const client = await connectToDatabase();
 
   const db = client.db();
@@ -45,13 +56,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const hashedPassword = await hashPassword(newPassword);
 
-  console.log(hashedPassword);
-
-  const result = await usersCollection.updateOne(
+  await usersCollection.updateOne(
     { email: userEmail },
     { $set: { password: hashedPassword } }
   );
 
   client.close();
-  res.status(200).json({ messange: "Password updated" });
+  res.status(200).json({ message: "Password updated" });
 }

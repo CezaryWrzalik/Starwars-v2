@@ -12,12 +12,13 @@ type PropsType = {
 };
 
 const LayoutContainer = styled.div`
-  display: grid;
-  grid-template: 80px 1fr 80px/ 1fr;
   height: 100%;
 
+  display: grid;
+  grid-template: 80px calc(100% - 160px) 80px/ 1fr;
+
   @media (max-width: 650px) {
-    grid-template: 80px 1fr 80px/ 1fr;
+    grid-template: 80px calc(100% - 160px) 80px/ 1fr;
   }
 
   @media (max-height: 500px) {

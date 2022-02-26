@@ -6,7 +6,6 @@ const HeaderButtonsContainer = styled.div`
   align-self: center;
 
   height: 80%;
-  width: 100%;
   display: flex;
   justify-content: center;
   gap: 20px;
