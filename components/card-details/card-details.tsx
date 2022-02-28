@@ -6,31 +6,31 @@ type PropsType = {
 
 const CardDetailsContainer = styled.div`
   display: grid;
-	grid-template-columns: 1fr;
-	padding: 15px;
-	overflow-y: scroll;
-	max-height: 100%;
+  grid-template-columns: 1fr;
+  padding: 15px;
+  overflow-y: scroll;
+  max-height: 100%;
 `;
 
 const ValueCotnainer = styled.div`
- overflow: hidden;
- padding: 5px;
+  overflow: hidden;
+  padding: 5px;
 
- h3{
-	 text-transform: capitalize;
- }
+  h3 {
+    text-transform: capitalize;
+  }
 `;
 
 const CardDetails = ({ card }: PropsType) => {
-  const keys = Object.keys(card);
+  const objectKeys = Object.keys(card);
 
   return (
     <CardDetailsContainer>
-      {keys.map((c) => {
+      {objectKeys.map((objectKey, i) => {
         return (
-          <ValueCotnainer>
-            <h3>{c}:</h3>
-						<p>{card[c as keyof typeof card]}</p>
+          <ValueCotnainer key={i}>
+            <h3>{objectKey}:</h3>
+            <p>{card[objectKey as keyof typeof card]}</p>
           </ValueCotnainer>
         );
       })}

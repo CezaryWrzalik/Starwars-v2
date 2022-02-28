@@ -30,7 +30,7 @@ const List = styled.ul`
 	list-style: none;
 `
 
-const Item = styled.li`
+const Item = styled.a`
 	padding: 10px;
 
 	a{
