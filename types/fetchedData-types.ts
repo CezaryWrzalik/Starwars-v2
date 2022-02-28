@@ -8,7 +8,10 @@ interface CardsResult {
   count: number;
   next: string;
   previous: string;
-  results: {}[];
+  results: {
+    name: string,
+    data: string,
+  }[];
 }
 
 export type CardsResultType = CardsResult;

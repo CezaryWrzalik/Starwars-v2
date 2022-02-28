@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CardsResultType } from "../../../types/fetchedData-types";
+import CardDetails from "./card-details";
 
 type PropsType = {
   cards: CardsResultType[];
+  category: string;
 };
 
 const CardsList = styled.ul`
@@ -36,23 +38,17 @@ const CardItem = styled.li`
   }
 `;
 
-const Data = styled.p`
-  text-transform: capitalize;
-  margin-bottom: 10px;
-`;
-
-const Cards = ({ cards }: PropsType) => {
-  const [keys, setKeys] = useState<string[]>([]);
+const Cards = ({ cards, category }: PropsType) => {
+  const [objectKeys, setObjectKeys] = useState<string[]>([]);
 
   const getFirstKeys = () => {
     const cardsKeys = [];
     for (let i = 0; i < 3; i++) {
       const key = Object.keys(cards[0])[i];
-
       cardsKeys.push(key);
     }
 
-    setKeys(cardsKeys);
+    setObjectKeys(cardsKeys);
   };
 
   useEffect(() => {
@@ -63,10 +59,13 @@ const Cards = ({ cards }: PropsType) => {
     <CardsList>
       {cards.map((card, i) => (
         <CardItem key={i}>
-          {keys.map((key, i) => (
-            <Data key={i}>
-              {key}: <b>{card[key as keyof typeof card]}</b>
-            </Data>
+          {objectKeys.map((objectKey, i) => (
+            <CardDetails
+              key={i}
+              category={category}
+              objectKey={objectKey}
+              card={card}
+            />
           ))}
         </CardItem>
       ))}

@@ -49,7 +49,7 @@ const Content = ({ cards, category }: PropsType) => {
       <Container>
         <CardsContainer>
           <Header>{category}</Header>
-          <Cards cards={cards} />
+          <Cards cards={cards} category={category} />
         </CardsContainer>
       </Container>
     </ContentContainer>
