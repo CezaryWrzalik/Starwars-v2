@@ -16,4 +16,8 @@ interface CardsResult {
 
 export type CardsResultType = CardsResult;
 
+interface Cards {
 
+} 
+
+export type CardsType = Cards;

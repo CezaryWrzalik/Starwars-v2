@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { CardsResultType } from "../../../types/fetchedData-types";
+import { CardsResultType, CardsType } from "../../../types/fetchedData-types";
 import CardDetails from "./card-details";
 
 type PropsType = {
-  cards: CardsResultType[];
+  cards: CardsType[];
   category: string;
 };
 
@@ -52,8 +52,10 @@ const Cards = ({ cards, category }: PropsType) => {
   };
 
   useEffect(() => {
-    getFirstKeys();
-  }, []);
+    if (cards[0]) {
+      getFirstKeys();
+    }
+  }, [cards]);
 
   return (
     <CardsList>

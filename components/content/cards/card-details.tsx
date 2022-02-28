@@ -1,11 +1,12 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { removeSpace } from "../../../lib/removeSpace";
+import { CardsType } from "../../../types/fetchedData-types";
 
 type PropsType = {
   category: string;
   objectKey: string;
-  card: {};
+  card: CardsType;
 };
 
 const Data = styled.p`
