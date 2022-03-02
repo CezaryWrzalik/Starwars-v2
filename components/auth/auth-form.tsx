@@ -97,7 +97,7 @@ const AuthForm = () => {
       }
 
       if (!result.error) {
-        updateResponse("success", "pending", submitter);
+        updateResponse("success", "Logged", submitter);
       }
     }
 
