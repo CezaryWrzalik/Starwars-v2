@@ -16,6 +16,7 @@ const ProfileMenuContainer = styled.div`
  visibility: hidden;
  opacity: 0;
  transition: visibility 0s linear 300ms, opacity 300ms;
+ background-color: ${({theme}) => theme.body};
 
  ${({ isPopupVisible }: PropsType) =>
  isPopupVisible &&
