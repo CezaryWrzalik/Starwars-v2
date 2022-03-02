@@ -32,6 +32,7 @@ const List = styled.ul`
 
 const Item = styled.a`
 	padding: 10px;
+	display: block;
 
 	a{
 		width: 100%;

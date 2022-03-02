@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { removeSpace } from "../../../lib/removeSpace";
 import { State } from "../../../redux";
-import styled from "styled-components";
 import Link from "next/link";
 import CardDetails from "../../../components/card-details/card-details";
 import { getCardByName } from "../../../lib/starwars";
+import styled from "styled-components";
 
 const CardPageContainer = styled.div`
   display: grid;

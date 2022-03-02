@@ -1,21 +1,24 @@
 import { ChangeEvent } from "react";
 import styled from "styled-components";
 
-const StringFilterContainer = styled.div`
+export const StringFilterContainer = styled.div`
   width: 100%;
   margin-top: 10px;
-
+  
   label {
-    color: ${({theme}) => theme.text};
-    padding: 10px;
+    display: block;
+    padding: 5px;
+    color: ${({ theme }) => theme.text};
+    text-transform: capitalize;
   }
 
   input {
-    background: inherit;
-    border: 1px solid ${({theme}) => theme.text};
+    width: 150px;
     padding: 5px 20px;
-    color: ${({theme}) => theme.text};
-		width: 150px;
+    background: inherit;
+    color: ${({ theme }) => theme.text};
+    border-radius: var(--default-radius);
+    border: 1px solid ${({ theme }) => theme.text};
   }
 `;
 type PropsType = {

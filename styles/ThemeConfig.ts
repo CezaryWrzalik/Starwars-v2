@@ -6,7 +6,7 @@ export const lightTheme = {
   body: "#E5E5E5",
   text: "black",
   background: "#363537",
-  hovered: "lightgray"
+  hovered: "lightgray",
 };
 
 export const darkTheme = {
@@ -14,7 +14,7 @@ export const darkTheme = {
   body: "#242424",
   text: "gold",
   background: "#999",
-  hovered: "dimgray"
+  hovered: "dimgray",
 };
 
 export const GlobalStyles = createGlobalStyle`
@@ -54,7 +54,8 @@ svg{
 }
 
 input:focus {
-  border: 1px solid red;
+  outline: none;
+  border: 2px solid ${({ theme }: CustomTheme) => theme.text};
 }
 
 a{
@@ -76,5 +77,14 @@ a{
 ::-webkit-scrollbar-thumb {
   background: darkgray;
   border-radius: 15px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
 `;

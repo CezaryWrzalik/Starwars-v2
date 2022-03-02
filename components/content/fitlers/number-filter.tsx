@@ -1,23 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { StringFilterContainer } from "./string-filter";
 import styled from "styled-components";
-
-const NumberFilterContainer = styled.div`
-  width: 100%;
-  margin-top: 10px;
-
-  label {
-    color: ${({theme}) => theme.text};
-    padding: 10px;
-  }
-
-  input {
-    background: inherit;
-    border: 1px solid ${({theme}) => theme.text};
-    padding: 5px 20px;
-    color: ${({theme}) => theme.text};
-    width: 150px;
-  }
-`;
 
 type PropsType = {
   filter: {
@@ -28,6 +11,17 @@ type PropsType = {
   };
   updateFilters: (key: string, value: string | number | object) => void;
 };
+
+const NumberFilterContainer = styled(StringFilterContainer)`
+  input {
+    border-radius: 15px 15px 0 0;
+  }
+
+  input:nth-child(3) {
+    border-radius: 0 0 15px 15px;
+  }
+`;
+
 
 const NumberFilter = ({ filter, updateFilters }: PropsType) => {
   const [min, setMin] = useState(filter.minValue);
@@ -46,7 +40,7 @@ const NumberFilter = ({ filter, updateFilters }: PropsType) => {
   useEffect(() => {
     const obj = {
       minValue: min,
-      maxValue: max
+      maxValue: max,
     };
 
     updateFilters(filter.name!, obj);
@@ -57,12 +51,12 @@ const NumberFilter = ({ filter, updateFilters }: PropsType) => {
       <label htmlFor="">{filter.name}</label>
       <input
         type="number"
-        onChange={e => handleChange(e, "min")}
+        onChange={(e) => handleChange(e, "min")}
         placeholder={`min`}
       />
       <input
         type="number"
-        onChange={e => handleChange(e, "max")}
+        onChange={(e) => handleChange(e, "max")}
         placeholder={`max`}
       />
     </NumberFilterContainer>

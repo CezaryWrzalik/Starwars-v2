@@ -1,7 +1,7 @@
 import Link from "next/link";
-import styled from "styled-components";
 import { removeSpace } from "../../../lib/removeSpace";
 import { CardsType } from "../../../types/fetchedData-types";
+import styled from "styled-components";
 
 type PropsType = {
   category: string;

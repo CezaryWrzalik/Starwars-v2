@@ -22,6 +22,7 @@ const FiltersContainer = styled.div`
   padding: 10px;
 
 	@media(max-width: 650px){
+    padding: 0px 10px;
 		width: 100vw;
 		display: flex;
 		gap: 20px;

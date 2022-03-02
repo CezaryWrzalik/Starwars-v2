@@ -1,8 +1,8 @@
 import { FormEvent, MutableRefObject, useRef } from "react";
-import styled from "styled-components";
 import { PassType } from "../../types/profile-types";
-import UiButton from "../ui/ui-button";
 import { UiInputContainer } from "../ui/ui-input";
+import UiButton from "../ui/ui-button";
+import styled from "styled-components";
 
 const ProfileFormContainer = styled.form`
   width: 200px;

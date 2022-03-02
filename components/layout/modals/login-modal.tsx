@@ -1,4 +1,3 @@
-import { useSession } from "next-auth/react";
 import styled from "styled-components";
 import AuthForm from "../../auth/auth-form";
 import CrossIcon from "../../icons/cross-icon";

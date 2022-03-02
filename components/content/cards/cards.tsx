@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { CardsResultType, CardsType } from "../../../types/fetchedData-types";
+import { CardsType } from "../../../types/fetchedData-types";
 import CardDetails from "./card-details";
+import styled from "styled-components";
 
 type PropsType = {
   cards: CardsType[];

@@ -1,11 +1,11 @@
-import { FormEvent, useRef } from "react";
+import { useRef } from "react";
+import UiButton from "../ui/ui-button";
 import { signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from "styled-components";
 import { actionCreators } from "../../redux";
-import UiButton from "../ui/ui-button";
 import { UiInputContainer } from "../ui/ui-input";
+import styled from "styled-components";
 
 const FormContainer = styled.form`
   display: flex;
@@ -39,12 +39,6 @@ const InputContainer = styled.div`
     width: 100%;
   }
 `;
-
-type ResultType = {
-  result: {
-    error: any
-  }
-}
 
 const RefInput = styled(UiInputContainer)``;
 

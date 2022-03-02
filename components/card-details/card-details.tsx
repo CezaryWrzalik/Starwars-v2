@@ -1,15 +1,19 @@
 import styled from "styled-components";
+import { CardsType } from "../../types/fetchedData-types";
+import POrLink from "./p-or-link";
 
 type PropsType = {
-  card: {};
+  card: CardsType;
 };
 
 const CardDetailsContainer = styled.div`
   display: grid;
+  place-items: center;
   grid-template-columns: 1fr;
   padding: 15px;
   overflow-y: scroll;
   max-height: 100%;
+  width: 100%;
 `;
 
 const ValueCotnainer = styled.div`
@@ -26,14 +30,16 @@ const CardDetails = ({ card }: PropsType) => {
 
   return (
     <CardDetailsContainer>
-      {objectKeys.map((objectKey, i) => {
-        return (
-          <ValueCotnainer key={i}>
-            <h3>{objectKey}:</h3>
-            <p>{card[objectKey as keyof typeof card]}</p>
-          </ValueCotnainer>
-        );
-      })}
+      <div>
+        {objectKeys.map((objectKey, i) => {
+          return (
+            <ValueCotnainer key={i}>
+              <h3>{objectKey}:</h3>
+              <POrLink data={card[objectKey as keyof typeof card]} />
+            </ValueCotnainer>
+          );
+        })}
+      </div>
     </CardDetailsContainer>
   );
 };

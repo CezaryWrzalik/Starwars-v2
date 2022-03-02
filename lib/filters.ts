@@ -1,5 +1,5 @@
-import { State } from "../redux";
-import { CardsResultType, CardsType } from "../types/fetchedData-types";
+import { CardsType } from "../types/fetchedData-types";
+import { FiltersType } from "../types/filter-types";
 
 export const generateFilters = (cards: CardsType[]) => {
   const card = cards[0];
@@ -12,9 +12,9 @@ export const generateFilters = (cards: CardsType[]) => {
     let value = card[key as keyof typeof card];
 
     if (parseInt(value!)) {
-      const allValues = cards.map(card => +value!);
-      const onlyInt = allValues.filter(value => !isNaN(value));
-      const sortedValues = onlyInt.sort(function(a: number, b: number) {
+      const allValues = cards.map(() => +value!);
+      const onlyInt = allValues.filter((value) => !isNaN(value));
+      const sortedValues = onlyInt.sort((a: number, b: number) => {
         return a - b;
       });
       const minValue = sortedValues[0];
@@ -23,7 +23,7 @@ export const generateFilters = (cards: CardsType[]) => {
         type: "number",
         name: key,
         minValue,
-        maxValue
+        maxValue,
       };
 
       filters.push(obj);
@@ -33,7 +33,7 @@ export const generateFilters = (cards: CardsType[]) => {
     if (typeof value === "string") {
       const obj = {
         type: "string",
-        name: key
+        name: key,
       };
 
       filters.push(obj);
@@ -44,34 +44,19 @@ export const generateFilters = (cards: CardsType[]) => {
   return filters;
 };
 
-type FiltersType = {
-	state: {
-
-	}
-};
-
-type T = {
-	maxValue: number,
-	minValue: number
-}
-
 export const filterCards = (filtersState: FiltersType, cards: CardsType) => {
-	
-	const filters = filtersState.state;
-	
+  const filters = filtersState.state;
+
   if (!filters) {
-		return cards;
+    return cards;
   }
-	
+
   let filteredData = cards;
-	
+
   const filterKeys = Object.keys(filters);
 
-  filterKeys.map(filterKey => {
+  filterKeys.map((filterKey) => {
     const filterValue: any = filters[filterKey as keyof typeof filteredData];
-
-		console.log(filterValue);
-
     if (
       typeof filterKey === "string" &&
       filterValue.length !== 0 &&
@@ -79,7 +64,7 @@ export const filterCards = (filtersState: FiltersType, cards: CardsType) => {
     ) {
       const valueLower = filterValue.toLowerCase();
 
-			const d  = filteredData as Array<string>;
+      const d = filteredData as Array<string>;
 
       filteredData = d.filter((card) =>
         card[filterKey as keyof typeof cards].toLowerCase().includes(valueLower)
@@ -97,11 +82,12 @@ export const filterCards = (filtersState: FiltersType, cards: CardsType) => {
         maxValue = filterValue.maxValue || 10000;
       }
 
-			const d  = filteredData as Array<Object>;
+      const d = filteredData as Array<Object>;
 
       filteredData = d.filter(
         (card) =>
-          minValue <= +card[filterKey as keyof typeof cards] && +card[filterKey as keyof typeof cards] <= maxValue
+          minValue <= +card[filterKey as keyof typeof cards] &&
+          +card[filterKey as keyof typeof cards] <= maxValue
       );
     }
   });

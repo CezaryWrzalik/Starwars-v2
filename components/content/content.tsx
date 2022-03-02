@@ -1,11 +1,12 @@
+import { FiltersType } from "../../types/filter-types";
+import { CardsType } from "../../types/fetchedData-types";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 import { filterCards } from "../../lib/filters";
 import { State } from "../../redux";
-import { CardsResultType, CardsType } from "../../types/fetchedData-types";
 import Aside from "./aside";
 import Cards from "./cards/cards";
+import styled from "styled-components";
 
 const ContentContainer = styled.div`
 width: 100%;
@@ -20,20 +21,20 @@ gap: 20px;
 }
 
 @media(max-width: 650px){
-  grid-template: 100px 1fr / 1fr;
+  grid-template: 1fr auto / 1fr;
   gap: 0;
 }
 `;
 
 const Container = styled.div`
-  padding: 40px 20px;
+  padding: 20px 20px;
   overflow-y: scroll;
 `;
 
 const AsideContainer = styled.aside`
   border-right: 1px solid ${({ theme }) => theme.text};
 
-  @media(max-width: 650px){
+  @media (max-width: 650px) {
     border-right: 0px;
   }
 `;
@@ -48,10 +49,6 @@ const CardsContainer = styled.div``;
 type PropsType = {
   cards: CardsType[];
   category: string;
-};
-
-type FiltersType = {
-  state: {};
 };
 
 const Content = ({ cards, category }: PropsType) => {
