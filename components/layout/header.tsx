@@ -38,9 +38,9 @@ const IconContainer = styled.div`
     width: 100%;
     svg {
       cursor: pointer;
-      transition: .5s;
-
+      
       :hover {
+        transition: .2s;
         fill: ${({theme}) => theme.hovered};
       }
     }
