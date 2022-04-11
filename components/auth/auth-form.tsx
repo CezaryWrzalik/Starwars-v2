@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../../redux";
 import { UiInputContainer } from "../ui/ui-input";
 import styled from "styled-components";
+import { resourceLimits } from "worker_threads";
 
 const FormContainer = styled.form`
   display: flex;
@@ -70,44 +71,49 @@ const AuthForm = () => {
     return data;
   };
 
-  const subbmitHandler = async (e: React.MouseEvent<HTMLElement>, submitter: string) => {
+  const subbmitHandler = async (
+    e: React.MouseEvent<HTMLElement>,
+    submitter: string
+  ) => {
     e.preventDefault();
 
     if (!emailInputRef.current || !passwordInputRef.current) {
       return;
     }
 
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
 
     if (submitter === "login") {
       updateResponse("pending", "pending", submitter);
-      const result = await signIn<'credentials'>("credentials", {
+      signIn("credentials", {
         redirect: false,
-        email: enteredEmail,
-        password: enteredPassword,
+        email,
+        password,
+      }).then((response: any) => {
+        if (response) {
+          if (response.error) {
+            updateResponse("error", response.error, submitter);
+          } else {
+            updateResponse("success", "Logged", submitter);
+          }
+        } else {
+          throw new Error("Something went wrong");
+        }
       });
-
-      if(!result){
-        throw new Error ("Something went wrong");
-      }
-
-      if (result.error) {
-        updateResponse("error", result.error, submitter);
-      }
-
-      if (!result.error) {
-        updateResponse("success", "Logged", submitter);
-      }
     }
 
     if (submitter === "register") {
       updateResponse("pending", "pending", submitter);
-      
-      try {
-        const result = await createUser(enteredEmail, enteredPassword);
 
+      try {
+        const result = await createUser(email, password);
         updateResponse("success", result.message, submitter);
+        signIn("credentials", {
+          redirect: false,
+          email,
+          password,
+        });
       } catch (error) {
         if (error instanceof Error) {
           updateResponse("error", error.message, submitter);
