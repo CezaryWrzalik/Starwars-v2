@@ -7,5 +7,8 @@ For example u can go to people find character u want and get information about h
 ## Future plans
 Change links in characters/id so they wont redirect into api page..
 
+## Vercel
+https://starwars-v2.vercel.app/
+
 ## Why did i do that
 Idk realy.
